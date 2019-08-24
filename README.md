@@ -1,2 +1,1 @@
-# gcp-vpc
-Module that create VPC in GCP
+# Module that create VPC in GCP
