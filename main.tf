@@ -9,9 +9,9 @@ resource "google_compute_network" "vpc_chavo" {
 #--------------------------------------
 resource "google_compute_subnetwork" "subnet_vm" {
   name          = "subnet-vm"
-  ip_cidr_range = "${var.subnet_range}"
-  network       = "${google_compute_network.vpc_chavo.self_link}"
-  region        = "${var.region}"
+  ip_cidr_range = var.subnet_range
+  network       = google_compute_network.vpc_chavo.self_link
+  region        = var.region
 }
 
 
@@ -23,7 +23,7 @@ resource "google_compute_subnetwork" "subnet_vm" {
 # FW rule uses service accounts for rule target
 resource "google_compute_firewall" "allow_all_consul" {
   name    = "allow-internal-consul"
-  network = "${google_compute_network.vpc_chavo.self_link}"
+  network = google_compute_network.vpc_chavo.self_link
   allow {
     protocol = "all"
   }
